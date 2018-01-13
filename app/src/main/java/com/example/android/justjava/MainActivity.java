@@ -11,6 +11,8 @@ package com.example.android.justjava;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.AlarmClock;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +20,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 /**
  * This app displays an order form to order coffee.
@@ -98,7 +99,21 @@ public class MainActivity extends AppCompatActivity {
         name = nameEditText.getText().toString();
 
         String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate);
-        displayMessage(priceMessage);
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));//only email apps should handle this
+        intent.putExtra(Intent.EXTRA_SUBJECT, "JustJava order for "+name);
+        intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
+        if (intent.resolveActivity(getPackageManager()) != null){
+            startActivity(intent);
+        }
+//        displayMessage(priceMessage);
+
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//        intent.setData(Uri.parse("geo:47.6, -122.3"));
+//        if (intent.resolveActivity(getPackageManager()) != null) {
+//            startActivity(intent);
+//        }
 
 //        Locale locale=Locale.getDefault();
 //        Currency currency=Currency.getInstance(locale);
@@ -144,10 +159,10 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method displays the given text on the screen.
      */
-    public void displayMessage(String message){
-        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
-    }
+//    public void displayMessage(String message){
+//        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
+//        orderSummaryTextView.setText(message);
+//    }
 
     /**
      * This method displays the given quantity value on the screen.
@@ -159,8 +174,44 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToWeb(View view){
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
-        startActivity(browserIntent);
+        if (browserIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(browserIntent);
+        }
     }
+
+    public void goToAlarm(View view){
+        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
+                .putExtra(AlarmClock.EXTRA_MESSAGE, "JustJava Alarm");
+//                .putExtra(AlarmClock.EXTRA_HOUR, 18)
+//                .putExtra(AlarmClock.EXTRA_MINUTES, 05);
+        if(intent.resolveActivity(getPackageManager()) != null){
+            startActivity(intent);
+        }
+    }
+
+    public void goToCamera(View view){
+        Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+        if (intent.resolveActivity(getPackageManager()) != null){
+            startActivity(intent);
+        }
+    }
+
+    public void goToPhone(View view){
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel: 0040753033202"));
+            if (intent.resolveActivity(getPackageManager()) != null){
+                startActivity(intent);
+        }
+    }
+
+//    public void goToNote(View view){
+//        Intent intent = new Intent(NoteIntents.ACTION_CREATE_NOTE)
+//                .putExtra(NoteIntents.EXTRA_NAME, "JustJava Note")
+//                .putExtra(NoteIntents.EXTRA_TEXT, "Testing 1 2 3");
+//        if(intent.resolveActivity(getPackageManager()) != null){
+//            startActivity(intent);
+//        }
+//    }
 
 //    /**
 //     * This method displays the given price on the screen.

@@ -24,7 +24,6 @@
             android:layout_height="wrap_content"
             android:hint="Name"
             android:inputType="textPersonName|textCapWords"
-
             android:focusedByDefault="false"/>
 
         <TextView
@@ -90,20 +89,20 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Order Summary"
-            android:textAllCaps="true" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:text="Order Summary"-->
+            <!--android:textAllCaps="true" />-->
 
-        <TextView
-            android:id="@+id/order_summary_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="\n"
-            android:textColor="@android:color/black" />
+        <!--<TextView-->
+            <!--android:id="@+id/order_summary_text_view"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:text="\n"-->
+            <!--android:textColor="@android:color/black" />-->
 
         <Button
             android:layout_width="wrap_content"
@@ -116,7 +115,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="goToWeb"
-            android:text="@string/web" />
+            android:text="Go To Web" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="goToAlarm"
+            android:text="Go To Alarm" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="goToCamera"
+            android:text="Go To Camera" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="goToPhone"
+            android:text="Go to Phone" />
 
     </LinearLayout>
 
