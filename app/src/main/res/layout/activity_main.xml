@@ -14,12 +14,18 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
         <EditText
             android:id="@+id/name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name"
-            android:inputType="textPersonName|textCapWords" />
+            android:inputType="textPersonName|textCapWords"
+
+            android:focusedByDefault="false"/>
 
         <TextView
             android:layout_width="wrap_content"

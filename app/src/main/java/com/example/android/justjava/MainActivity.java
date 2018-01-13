@@ -12,10 +12,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     int quantity;
     int pricePerCup = 5;
     String name;
+    Toast toastMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +37,28 @@ public class MainActivity extends AppCompatActivity {
 
         TextView quantityView = findViewById(R.id.quantity_text_view);
         quantity = Integer.valueOf(quantityView.getText().toString());
+
+        toastMessage = new Toast(getApplicationContext());
     }
 
     /**
      * This method is called when the plus button is clicked.
      */
     public void increment(View view) {
-        quantity++;
+        if(quantity>=10){
+            try{
+                Log.i("MainActivity", "Trying to cancel Toast!");
+                toastMessage.cancel();
+                Log.i("MainActivity", "Managed to cancel Toast!");
+            } catch (Exception e){
+                Log.i("MainActivity", "CRAAAAAAASH: No previous toast!!!");
+            }
+            toastMessage = Toast.makeText(getApplicationContext(), "Can't order more than 10 cups", Toast.LENGTH_SHORT);
+            toastMessage.show();
+            return;
+        } else {
+            quantity++;
+        }
         displayQuantity(quantity);
     }
 
@@ -48,7 +66,18 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the minus button is clicked.
      */
     public void decrement(View view) {
-        if(quantity>0){
+        if(quantity==1){
+            try{
+                Log.i("MainActivity", "Trying to cancel Toast!");
+                toastMessage.cancel();
+                Log.i("MainActivity", "Managed to cancel Toast!");
+            } catch (Exception e){
+                Log.i("MainActivity", "Crash: No previous toast!!!");
+            }
+            toastMessage = Toast.makeText(getApplicationContext(), "Can't really order less than one cup", Toast.LENGTH_SHORT);
+            toastMessage.show();
+            return;
+        } else {
             quantity--;
         }
         displayQuantity(quantity);
@@ -58,12 +87,13 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = calculatePrice();
-
         CheckBox whippedCream = findViewById(R.id.whipped_cream_checkbox);
         boolean hasWhippedCream = whippedCream.isChecked();
         CheckBox chocolateCheckBox = findViewById(R.id.chocolate_checkbox);
         boolean hasChocolate = chocolateCheckBox.isChecked();
+
+        int price = calculatePrice(hasWhippedCream, hasChocolate);
+
         EditText nameEditText = findViewById(R.id.name_edit_text);
         name = nameEditText.getText().toString();
 
@@ -100,8 +130,15 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Calculates the price of the order.
      */
-    private int calculatePrice() {
-        return quantity * pricePerCup;
+    private int calculatePrice(boolean hasWhippedCream, boolean hasChocolate) {
+        int newPricePerCup = pricePerCup;
+        if(hasWhippedCream){
+            newPricePerCup += 1;
+        }
+        if(hasChocolate){
+            newPricePerCup += 2;
+        }
+        return quantity * newPricePerCup;
     }
 
     /**
