@@ -1,4 +1,32 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Coffeeeeee!</string>
-    <string name="web">Join us friend!</string>
+
+    <!--Header text for the list of toppings [CHAR LIMIT = 20]-->
+    <string name="toppings">Toppings</string>
+
+    <!--Thank you message for the order summary [CHAR LIMIT = NONE]-->
+    <string name="thank_you">Thank you!</string>
+
+    <!--Name for the order summary. It will be shown in the format of "Name: Amy" where Amy is the user's name. [CHAR LIMIT = NONE]-->
+    <string name="order_summary_name">Name: <xliff:g id="name" example="Amy">%s</xliff:g></string>
+
+    <!--Mail subject for order [CHAR LIMIT = NONE]-->
+    <string name="mail_subject_order">JustJava order for: <xliff:g id="name" example="Amy">%s</xliff:g></string>
+
+    <!--Quantity for order summary. It will be shown in the format of "Quantity: 2" where 2 is the quantity ordered. [CHAR LIMIT = NONE]-->
+    <string name="order_quantity">Quantity: <xliff:g id="quantity" example="2">%d</xliff:g></string>
+
+    <string name="max_cups_order">Can\'t order more than <xliff:g id="quantity" example="10">%d</xliff:g> cups</string>
+    <string name="min_number_cups">Can\'t order less than one cup</string>
+
+    <string name="name_edit_hint">Name</string>
+    <string name="whipped_cream">Whipped Cream</string>
+    <string name="chocolate">Chocolate</string>
+    <string name="quantity">Quantity</string>
+    <string name="order">Order</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="add_whipped_cream">Add whipped cream?</string>
+    <string name="add_chocolate">Add chocolate?</string>
+    <string name="total_price_summary">Total: $</string>
 </resources>

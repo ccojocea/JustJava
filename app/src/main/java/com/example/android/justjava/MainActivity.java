@@ -1,11 +1,3 @@
-/**
- * IMPORTANT: Add your package below. Package name can be found in the project's AndroidManifest.xml file.
- * This is the package name our example uses:
- *
- * package com.example.android.justjava;
- *
- */
-
 package com.example.android.justjava;
 
 import android.content.Intent;
@@ -26,10 +18,10 @@ import android.widget.Toast;
  */
 public class MainActivity extends AppCompatActivity {
 
-    int quantity;
-    int pricePerCup = 5;
-    String name;
-    Toast toastMessage;
+    private int quantity;
+    private final int PRICE_PER_CUP = 5;
+    private String name;
+    private Toast toastMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the plus button is clicked.
      */
     public void increment(View view) {
-        if(quantity>=10){
+        int maxInt = 10;
+        if(quantity>=maxInt){
             try{
                 Log.i("MainActivity", "Trying to cancel Toast!");
                 toastMessage.cancel();
@@ -54,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e){
                 Log.i("MainActivity", "CRAAAAAAASH: No previous toast!!!");
             }
-            toastMessage = Toast.makeText(getApplicationContext(), "Can't order more than 10 cups", Toast.LENGTH_SHORT);
+            toastMessage = Toast.makeText(getApplicationContext(), getString(R.string.max_cups_order, maxInt), Toast.LENGTH_SHORT);
             toastMessage.show();
             return;
         } else {
@@ -75,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e){
                 Log.i("MainActivity", "Crash: No previous toast!!!");
             }
-            toastMessage = Toast.makeText(getApplicationContext(), "Can't really order less than one cup", Toast.LENGTH_SHORT);
+            toastMessage = Toast.makeText(getApplicationContext(), getString(R.string.min_number_cups), Toast.LENGTH_SHORT);
             toastMessage.show();
             return;
         } else {
@@ -102,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));//only email apps should handle this
-        intent.putExtra(Intent.EXTRA_SUBJECT, "JustJava order for "+name);
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.mail_subject_order, name));
         intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
         if (intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
@@ -133,20 +126,28 @@ public class MainActivity extends AppCompatActivity {
      */
 
     private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolate){
-        String orderSummary = "Name: " + name;
-        orderSummary += "\nAdd whipped cream? " + hasWhippedCream;
-        orderSummary += "\nAdd chocolate? " + hasChocolate;
-        orderSummary += "\nQuantity: " + quantity;
-        orderSummary += "\nTotal: "+"$"+ price;
-        orderSummary += "\nThank you!";
+        //using the xliff tags in XML - Mark message parts that should not be translated
+        String orderSummary = getString(R.string.order_summary_name, name);
+        orderSummary += "\n" + getString(R.string.add_whipped_cream) + " " + checkBoolean(hasWhippedCream);
+        orderSummary += "\n" + getString(R.string.add_chocolate) + " " + checkBoolean(hasChocolate);
+        orderSummary += "\n" + getString(R.string.order_quantity, quantity);
+        orderSummary += "\n" + getString(R.string.total_price_summary) + price;
+        orderSummary += "\n" + getString(R.string.thank_you);
         return orderSummary;
+    }
+
+    private String checkBoolean(boolean trueOrFalse){
+        if(trueOrFalse){
+            return getString(R.string.yes);
+        }
+        return getString(R.string.no);
     }
 
     /**
      * Calculates the price of the order.
      */
     private int calculatePrice(boolean hasWhippedCream, boolean hasChocolate) {
-        int newPricePerCup = pricePerCup;
+        int newPricePerCup = PRICE_PER_CUP;
         if(hasWhippedCream){
             newPricePerCup += 1;
         }
@@ -156,9 +157,9 @@ public class MainActivity extends AppCompatActivity {
         return quantity * newPricePerCup;
     }
 
-    /**
-     * This method displays the given text on the screen.
-     */
+//    /**
+//     * This method displays the given text on the screen.
+//     */
 //    public void displayMessage(String message){
 //        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
 //        orderSummaryTextView.setText(message);
