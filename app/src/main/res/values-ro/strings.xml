@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Coffeeeeee!</string>
+    <string name="thank_you">Multumesc!</string>
+    <string name="toppings">Garnituri</string>
+    <string name="order_summary_name">Nume: <xliff:g id="name" example="Amy">%s</xliff:g></string>
+    <string name="mail_subject_order">Comanda JustJava pentru: <xliff:g id="name" example="Amy">%s</xliff:g></string>
+    <string name="order_quantity">Cantitate: <xliff:g id="quantity" example="2">%d</xliff:g></string>
+    <string name="max_cups_order">Nu pot fi comandate mai mult de <xliff:g id="quantity" example="10">%d</xliff:g> cani</string>
+    <string name="name_edit_hint">Nume</string>
+    <string name="whipped_cream">Frisca</string>
+    <string name="chocolate">Ciocolata</string>
+    <string name="quantity">Cantitate</string>
+    <string name="order">Comanda</string>
+    <string name="yes">Da</string>
+    <string name="no">Nu</string>
+    <string name="add_whipped_cream">Adauga frisca?</string>
+    <string name="add_chocolate">Adauga ciocolata?</string>
+    <string name="total_price_summary">Total: $</string>
+    <string name="min_number_cups">Nu se poate comanda mai putin de o cana!</string>
+</resources>

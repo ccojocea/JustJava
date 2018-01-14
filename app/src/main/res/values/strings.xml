@@ -17,7 +17,7 @@
     <string name="order_quantity">Quantity: <xliff:g id="quantity" example="2">%d</xliff:g></string>
 
     <string name="max_cups_order">Can\'t order more than <xliff:g id="quantity" example="10">%d</xliff:g> cups</string>
-    <string name="min_number_cups">Can\'t order less than one cup</string>
+    <string name="min_number_cups">Can\'t order less than one cup!</string>
 
     <string name="name_edit_hint">Name</string>
     <string name="whipped_cream">Whipped Cream</string>
