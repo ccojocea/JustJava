@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Coffeeeeee!</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Sólo Java!</string>
     <string name="thank_you">Gracias!</string>
     <string name="toppings">Ingredientes</string>
+    <string name="name_edit_hint">Nombre</string>
+    <string name="whipped_cream">Crema batida</string>
+    <string name="chocolate">Chocolate</string>
+    <string name="quantity">Cantidad</string>
+    <string name="order">Ordenar</string>
+    <string name="order_summary_name">Nombre: <xliff:g id="name" example="Amy">%s</xliff:g></string>
+    <string name="add_whipped_cream">Agregue la crema batida?</string>
+    <string name="add_chocolate">Agregue el chocolate?</string>
+    <string name="order_quantity">Cantidad: <xliff:g id="quantity" example="2">%d</xliff:g></string>
+    <string name="total_price_summary">Total: $</string>
+    <string name="mail_subject_order">Sólo java para <xliff:g id="name" example="Amy">%s</xliff:g></string>
+    <string name="max_cups_order">No se pueden pedir más de <xliff:g id="quantity" example="10">%d</xliff:g> cafés.</string>
+    <string name="min_number_cups">No se pueden pedir menos de 1 café.</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
 </resources>
