@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
+
 /**
  * This app displays an order form to order coffee.
  */
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         orderSummary += "\n" + getString(R.string.add_whipped_cream) + " " + checkBoolean(hasWhippedCream);
         orderSummary += "\n" + getString(R.string.add_chocolate) + " " + checkBoolean(hasChocolate);
         orderSummary += "\n" + getString(R.string.order_quantity, quantity);
-        orderSummary += "\n" + getString(R.string.total_price_summary) + price;
+        orderSummary += String.format("\n" + getString(R.string.total_price_summary) + NumberFormat.getCurrencyInstance().format(price));
         orderSummary += "\n" + getString(R.string.thank_you);
         return orderSummary;
     }

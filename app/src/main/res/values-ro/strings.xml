@@ -16,6 +16,6 @@
     <string name="no">Nu</string>
     <string name="add_whipped_cream">Adauga frisca?</string>
     <string name="add_chocolate">Adauga ciocolata?</string>
-    <string name="total_price_summary">Total: $</string>
+    <string name="total_price_summary">"Total: "</string>
     <string name="min_number_cups">Nu se poate comanda mai putin de o cana!</string>
 </resources>

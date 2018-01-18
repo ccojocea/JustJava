@@ -28,5 +28,5 @@
     <string name="no">No</string>
     <string name="add_whipped_cream">Add whipped cream?</string>
     <string name="add_chocolate">Add chocolate?</string>
-    <string name="total_price_summary">Total: $</string>
+    <string name="total_price_summary">"Total: "</string>
 </resources>
