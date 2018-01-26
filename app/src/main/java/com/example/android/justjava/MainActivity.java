@@ -30,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        DisplayMetrics displayMetrics = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+//        int height = displayMetrics.heightPixels;
+//        int width = displayMetrics.widthPixels;
+//        Log.i("Activity", "Height: " + height + " Width: " + width);
+
         TextView quantityView = findViewById(R.id.quantity_text_view);
         quantity = Integer.valueOf(quantityView.getText().toString());
 
